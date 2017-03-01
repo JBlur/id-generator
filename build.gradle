@@ -1,0 +1,28 @@
+group 'id-generator'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = 'id-generator'
+    version =  '0.2'
+    doFirst {
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'com.google.guava', name: 'guava', version: '21.0'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+    testCompile('junit:junit:4.12'){
+        exclude group: 'org.hamcrest'
+    }
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
+}
