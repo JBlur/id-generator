@@ -3,7 +3,6 @@ import com.jblur.idgenerator.*;
 import javafx.util.Pair;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,3 @@
-import com.google.common.primitives.Shorts;
 import com.jblur.idgenerator.*;
 import javafx.util.Pair;
 import org.junit.Test;

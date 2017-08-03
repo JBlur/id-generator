@@ -1,7 +1,5 @@
 package com.jblur.idgenerator;
 
-import com.google.common.primitives.Bytes;
-import com.google.common.primitives.Shorts;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.mutable.MutableLong;
 
@@ -65,7 +63,7 @@ public class IDGenerator {
         this.idMode=idMode;
     }
 
-    private void setupParams(MutableLong param1, MutableLong param2, MutableLong param3, MutableLong time, MutableLong sequence){
+    private void setupParams(MutableLong param1, MutableLong param2, MutableLong param3, MutableLong time, Long sequence){
         switch (idMode){
             case TIME_UID_SEQUENCE:
                 param1.setValue(time);
@@ -147,12 +145,15 @@ public class IDGenerator {
     public byte[] generateId() throws SequenceOverflowException{
         MutableLong param1 = new MutableLong(), param2 = new MutableLong(), param3 = new MutableLong();
         MutableLong floorTime = new MutableLong(System.currentTimeMillis() - this.epochStartTime);
+        Long sequence = 0L;
+
         if(floorTime.longValue()==lastTime){
-            if(sequence.incrementAndGet()>maxSequence){
+            sequence = this.sequence.incrementAndGet();
+            if(sequence>this.maxSequence){
                 throw new SequenceOverflowException();
             }
         }else{
-            sequence.setValue(0);
+            this.sequence.setValue(0);
         }
         lastTime=floorTime.longValue();
         setupParams(param1, param2, param3, floorTime, sequence);

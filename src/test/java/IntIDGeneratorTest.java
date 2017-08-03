@@ -1,5 +1,4 @@
 import com.google.common.primitives.Ints;
-import com.google.common.primitives.Longs;
 import com.jblur.idgenerator.*;
 import javafx.util.Pair;
 import org.junit.Test;

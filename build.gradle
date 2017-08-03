@@ -8,7 +8,7 @@ targetCompatibility = 1.8
 
 jar {
     baseName = 'id-generator'
-    version =  '0.2'
+    version =  '0.3'
     doFirst {
         from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     }
@@ -19,8 +19,8 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.google.guava', name: 'guava', version: '21.0'
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+    compile group: 'com.google.guava', name: 'guava', version: '22.0'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
     testCompile('junit:junit:4.12'){
         exclude group: 'org.hamcrest'
     }
