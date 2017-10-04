@@ -59,7 +59,7 @@ Common use case is to use 64 bits which consist of 41 bits of time and other bit
    long myUniqueId3 = longIdGenerator3.generateLongId();
    long myUniqueId4 = longIdGenerator4.generateLongId();
    ```
-   Note that each instance of id generator has to have a unique instance id (in our example it is 1,2,3,4). Make sure that    instance id is unique across all servers.
+   Note that each instance of id generator has to have a unique instance id (in our example it is 1,2,3,4). Make sure that    instance id is unique across all servers.<br>
    Also, it is an uncommon practice to create several instances of same id generator on the same server. As all id generators are    thread safe then it is enough to create one instance of id generator on each server. If you create several instances of the same id generator on the same server because you need to generate more ids per millisecond per server then it may be because bits counts are not set efficiently. Maybe, it is better to increase sequance bit count. But sometimes it may be a good practice to use several id generators on the same server if project architecture requires so.
 3. Create integer ID generator which can generate only 1 unique id per millisecond for the next 49.7 days:
    ```
