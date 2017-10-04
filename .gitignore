@@ -9,3 +9,7 @@ fabric.properties
 
 build/
 .gradle/
+
+*.iws
+*.ipr
+*.iml
