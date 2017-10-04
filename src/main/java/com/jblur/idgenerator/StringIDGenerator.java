@@ -7,6 +7,9 @@ import java.util.Base64;
 
 import javax.xml.bind.DatatypeConverter;
 
+/**
+ * Unique String ID generator for distributed environments.
+ */
 public class StringIDGenerator extends IDGenerator {
     public StringIDGenerator(long epochStartTime, long uniqueID, int timeBitsCount, int uniqueIdBitsCount, int sequenceBitsCount, IDMode idMode) throws ZeroBitsExceptions, NegativeBitsCountException {
         super(epochStartTime, uniqueID, timeBitsCount, uniqueIdBitsCount, sequenceBitsCount, idMode);

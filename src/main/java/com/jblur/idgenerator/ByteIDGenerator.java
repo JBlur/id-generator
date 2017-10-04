@@ -1,7 +1,9 @@
 package com.jblur.idgenerator;
 
+/**
+ * Unique byte ID generator for distributed environments.
+ */
 public class ByteIDGenerator extends IDGenerator {
-
     public ByteIDGenerator(long epochStartTime, long uniqueID, int timeBitsCount, int uniqueIdBitsCount, int sequenceBitsCount, IDMode idMode) throws ZeroBitsExceptions, BitsCountException, NegativeBitsCountException {
         super(epochStartTime, uniqueID, timeBitsCount, uniqueIdBitsCount, sequenceBitsCount, idMode);
         if(getTotalBitsCount()!=8){

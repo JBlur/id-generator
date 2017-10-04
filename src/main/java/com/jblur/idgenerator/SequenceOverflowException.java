@@ -1,7 +1,7 @@
 package com.jblur.idgenerator;
 
 /**
- * This error is thrown when we reach maximum id generations per millisecond
+ * This exception is thrown when we reach maximum id generations per millisecond
  */
 public class SequenceOverflowException extends Exception{
     public SequenceOverflowException(){}

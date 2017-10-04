@@ -1,5 +1,8 @@
 package com.jblur.idgenerator;
 
+/**
+ * Params wrapper for {@link IDGenerator}
+ */
 public class IDModeParamsWrapper {
     public long param1, param2, param3;
 

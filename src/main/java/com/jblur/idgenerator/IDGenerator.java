@@ -7,7 +7,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Unique ID generator for distributed environments.
+ * Main unique ID generator for distributed environments.
  */
 public class IDGenerator {
     private volatile long sequence=0;
@@ -35,7 +35,8 @@ public class IDGenerator {
      * @param  idMode  order mode in which bits of time, instance id and sequence are placed.
      * @see    IDMode
      */
-    public IDGenerator(long epochStartTime, long instanceID, int timeBitsCount, int uniqueIdBitsCount, int sequenceBitsCount, IDMode idMode) throws ZeroBitsExceptions, NegativeBitsCountException {
+    public IDGenerator(long epochStartTime, long instanceID, int timeBitsCount, int uniqueIdBitsCount,
+                       int sequenceBitsCount, IDMode idMode) throws ZeroBitsExceptions, NegativeBitsCountException {
         this.totalBitsCount = timeBitsCount + uniqueIdBitsCount + sequenceBitsCount;
         if(this.totalBitsCount==0){
             throw new ZeroBitsExceptions("At least one bit have to be available to generate ID");
@@ -141,30 +142,32 @@ public class IDGenerator {
     }
 
     /**
-     * Generates byte array which consists of time bits, uid bits and sequence bits.<br>
-     * Bits positions depends on IDMode.<br>
-     * First byte contains highest bits. Left bits are highest bits.<br>
+     * Generates a byte array which consists of time bits, uid bits and sequence bits.<br>
+     * Position of bits depends on IDMode.<br>
+     * The first byte contains highest bits. Left bits are highest bits.<br>
      * For example:<br>
-     * Number 285 (0b0000000100011101) will be presented in byte array 'result' which will contain two bytes:<br>
+     * Number 285 (0b0000000100011101) will be presented in the byte array 'result' which will contain two bytes:<br>
      * result[0] will contain number: 1 (0b00000001)<br>
      * result[1] will contain number: 29 (0b00011101)<br>
      * <br>
      * UniqueID cannot contain more than 64 bits.
-     * Time and sequence can contain more than 64 bits but is doesn't make sense.<br>
+     * Time and sequence can contain more than 64 bits, but is doesn't make sense.<br>
      * <br>
-     * Time and sequence can contain more than 64 bits but is doesn't make sense as high bits of time and sequence
+     * Time and sequence can contain more than 64 bits, but is doesn't make sense as high bits of time and sequence
      * which are more than 64 bits will contain only 0s.<br>
-     * Logical maximum amount of bits is 192 (64 bits of time, 64 bits of unique ID, 64 bits of sequence).
+     * The logical maximum amount of bits is 192 (64 bits of time, 64 bits of the unique ID, 64 bits of sequence).
      * You can use more bits for time and sequence if you definitely know that you need so.<br>
      * <br>
-     * Common use case is to use 64 bits which consists of 41 bits for time and other bits are depend of your
+     * Common use case is to use 64 bits which consist of 41 bits of time and other bits are depend on your
      * system.<br>
      * For example:<br>
-     * Twitter Snowflake: 41 bits of time, 11 bits of machine ID, 12 bits of sequence number. ({@link IDMode#TIME_UID_SEQUENCE})<br>
-     * Instagram: 41 bits of time, 13 bits of machine ID, 10 bits of sequence number. ({@link IDMode#TIME_UID_SEQUENCE})
+     * Twitter Snowflake: 41 bits of time, 11 bits of machine ID, 12 bits of sequence number.
+     * ({@link IDMode#TIME_UID_SEQUENCE})<br>
+     * Instagram: 41 bits of time, 13 bits of machine ID, 10 bits of sequence number.
+     * ({@link IDMode#TIME_UID_SEQUENCE})
      *
-     * @return      Returns generated unique ID where first byte contains highest bits and left bits in each byte are
-     * highest bits.
+     * @return      Returns generated unique ID where the first byte contains highest bits and left bits in each byte
+     * are highest bits.
      *
      */
     public byte[] generateId() throws SequenceOverflowException {
@@ -298,5 +301,12 @@ public class IDGenerator {
      */
     public int getBytesCount() {
         return this.bytesCount;
+    }
+
+    /**
+     * @return      ID mode
+     */
+    public IDMode getIdMode() {
+        return idMode;
     }
 }

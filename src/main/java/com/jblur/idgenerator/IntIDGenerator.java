@@ -2,6 +2,9 @@ package com.jblur.idgenerator;
 
 import com.google.common.primitives.Ints;
 
+/**
+ * Unique int ID generator for distributed environments.
+ */
 public class IntIDGenerator extends IDGenerator {
     public IntIDGenerator(long epochStartTime, long uniqueID, int timeBitsCount, int uniqueIdBitsCount, int sequenceBitsCount, IDMode idMode) throws ZeroBitsExceptions, BitsCountException, NegativeBitsCountException {
         super(epochStartTime, uniqueID, timeBitsCount, uniqueIdBitsCount, sequenceBitsCount, idMode);

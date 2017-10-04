@@ -2,6 +2,9 @@ package com.jblur.idgenerator;
 
 import java.util.BitSet;
 
+/**
+ * Unique BitSet ID generator for distributed environments.
+ */
 public class BitSetIDGenerator extends IDGenerator{
     public BitSetIDGenerator(long epochStartTime, long uniqueID, int timeBitsCount, int uniqueIdBitsCount, int sequenceBitsCount, IDMode idMode) throws ZeroBitsExceptions, NegativeBitsCountException {
         super(epochStartTime, uniqueID, timeBitsCount, uniqueIdBitsCount, sequenceBitsCount, idMode);

@@ -2,6 +2,9 @@ package com.jblur.idgenerator;
 
 import com.google.common.primitives.Shorts;
 
+/**
+ * Unique short ID generator for distributed environments.
+ */
 public class ShortIDGenerator extends IDGenerator {
     public ShortIDGenerator(long epochStartTime, long uniqueID, int timeBitsCount, int uniqueIdBitsCount, int sequenceBitsCount, IDMode idMode) throws ZeroBitsExceptions, BitsCountException, NegativeBitsCountException {
         super(epochStartTime, uniqueID, timeBitsCount, uniqueIdBitsCount, sequenceBitsCount, idMode);
