@@ -40,34 +40,43 @@ Common use case is to use 64 bits which consist of 41 bits of time and other bit
  - Twitter Snowflake: 41 bits time, 11 bits machine ID, 12 bits sequence number. (IDMode.TIME_UID_SEQUENCE)  
  - Instagram: 41 bits time, 13 bits machine ID, 10 bits sequence number. (IDMode.TIME_UID_SEQUENCE)
  
- # Examples:
- Create long id generator which was described (41 bits of time, 10 of instance, 13 of the sequence):
- ```
- LongIDGenerator longIdGenerator = new LongIDGenerator(1507141731000L, 0, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
- long myUnqueId1 = longIdGenerator.generateLongId();
- long myUniqueId2 = longIdGenerator.generateLongId();
- ```
- Create several instances of above id generator:
-  ```
- LongIDGenerator longIdGenerator1 = new LongIDGenerator(1507141731000L, 0, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
- LongIDGenerator longIdGenerator2 = new LongIDGenerator(1507141731000L, 1, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
- LongIDGenerator longIdGenerator3 = new LongIDGenerator(1507141731000L, 3, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
- LongIDGenerator longIdGenerator4 = new LongIDGenerator(1507141731000L, 4, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
-
- long myUnqueId1 = longIdGenerator1.generateLongId();
- long myUniqueId2 = longIdGenerator2.generateLongId();
- long myUniqueId3 = longIdGenerator3.generateLongId();
- long myUniqueId4 = longIdGenerator4.generateLongId();
- ```
-Note that each instance of id generator has to have a unique instance id (in our example it is 1,2,3,4). Make sure that instance id is unique across all servers.
-Also, it is an uncommon practice to create several instances of same id generator on the same server. As all id generators are thread safe then it is enough to create one instance of id generator on each server. If you create several instances of the same id generator on the same server because you need to generate more ids per millisecond per server then it may be because bits counts are not set efficiently. Maybe, it is better to increase sequance bit count. But sometimes it may be a good practice to use several id generators on the same server if project architecture requires so.
-Create integer ID generator which can generate only 1 unique id per millisecond for the next 49.7 days:
-```
-IntIDGenerator intIdGenerator = new IntIDGenerator(1507141731000L, 0, 32, 0, 0, IDMode.TIME_UID_SEQUENCE);
-int myUniqueId = intIdGenerator.generateIntId();
-```
-Generate 27 bits ID generator which generates ids where sequence bits are higher bits.
-```
-IDGenerator idGenerator = new IDGenerator(1501936765671L, 0, 20, 2, 5, IDMode.SEQUENCE_UID_TIME);
-byte[] myUniqueId = idGenerator.generateId();
-```
+# Examples:
+1. Create long id generator which was described (41 bits of time, 10 of instance, 13 of the sequence):
+   ```
+   LongIDGenerator longIdGenerator = new LongIDGenerator(1507141731000L, 0, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
+   long myUnqueId1 = longIdGenerator.generateLongId();
+   long myUniqueId2 = longIdGenerator.generateLongId();
+   ```
+2. Create several instances of above id generator:
+   ```
+   LongIDGenerator longIdGenerator1 = new LongIDGenerator(1507141731000L, 0, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
+   LongIDGenerator longIdGenerator2 = new LongIDGenerator(1507141731000L, 1, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
+   LongIDGenerator longIdGenerator3 = new LongIDGenerator(1507141731000L, 3, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
+   LongIDGenerator longIdGenerator4 = new LongIDGenerator(1507141731000L, 4, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
+   
+   long myUnqueId1 = longIdGenerator1.generateLongId();
+   long myUniqueId2 = longIdGenerator2.generateLongId();
+   long myUniqueId3 = longIdGenerator3.generateLongId();
+   long myUniqueId4 = longIdGenerator4.generateLongId();
+   ```
+   Note that each instance of id generator has to have a unique instance id (in our example it is 1,2,3,4). Make sure that    instance id is unique across all servers.
+   Also, it is an uncommon practice to create several instances of same id generator on the same server. As all id generators are    thread safe then it is enough to create one instance of id generator on each server. If you create several instances of the same id generator on the same server because you need to generate more ids per millisecond per server then it may be because bits counts are not set efficiently. Maybe, it is better to increase sequance bit count. But sometimes it may be a good practice to use several id generators on the same server if project architecture requires so.
+3. Create integer ID generator which can generate only 1 unique id per millisecond for the next 49.7 days:
+   ```
+   IntIDGenerator intIdGenerator = new IntIDGenerator(1507141731000L, 0, 32, 0, 0, IDMode.TIME_UID_SEQUENCE);
+   int myUniqueId = intIdGenerator.generateIntId();
+   ```
+4. Create 27 bits ID generator which generates ids where sequence bits are higher bits:
+   ```
+   IDGenerator idGenerator = new IDGenerator(1501936765671L, 0, 20, 2, 5, IDMode.SEQUENCE_UID_TIME);
+   byte[] myUniqueId = idGenerator.generateId();
+   ```
+5. Create string ID generator:
+   ```
+   StringIDGenerator stringIDGenerator = new StringIDGenerator(1507141731000L, 0, 50, 20, 10, IDMode.TIME_UID_SEQUENCE);
+   
+   String simpleStringId = stringIDGenerator.generateStringId(); //may include invisible characters
+   String hexStringId = stringIDGenerator.generateHexBinaryId();
+   String base64StringId = stringIDGenerator.generateBase64Id();
+   String urlStringId = stringIDGenerator.generateURLEncodedId();
+   ```
