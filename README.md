@@ -19,13 +19,13 @@ Those id generators are all wrappers around basic IDGenerator (which returns byt
 
 Each unique id may contain (but not restricted) time bits, unique instance id bits and sequence bits. It allows to generate unique ids which are sorted by time / instance id or sequence.
 
-Also, each IDGenerator contains epochStartTime. It is a time from which epoch of a project is started.
+Also, each IDGenerator contains `epochStartTime`. It is a time from which epoch of a project is started.
 What does it mean?
 For example, if we need to generate time based ids in distributed environment, we want to be sure that all our generated ids are unique as long as possible.
 Let's assume that we need to generate 64 bits ids which contains 41 bits of time, 10 bits of instance id and 13 bits of sequence (it is one of the most common practice).
 With those options we can generate ids which are guaranteed to be unique next 2199023255552 milliseconds (almost for 70 years). Also, we can generate up to 8192 IDs per millisecond on each of 1024 instances (servers). It means that we can generate up to 8388608 unique IDs per millisecond in total for the next 70 years (it is 18446744073709551616 theoretically possible unique ids). And all of that fits in 64 bits (`long` in Java).
-To be able to fit 2199023255552 milliseconds in 41 bits we need to set epochStartTime which is equal to the current time in milliseconds. It means that we start counting milliseconds not from current time (which is about 1507141731000 at the time this README was created) but from 0.
-The practical advice is to choose any time of the year you are launching your project and use this time as epochStartTime for all instances forever.
+To be able to fit 2199023255552 milliseconds in 41 bits we need to set `epochStartTime` which is equal to the current time in milliseconds. It means that we start counting milliseconds not from current time (which is about 1507141731000 at the time this README was created) but from 0.
+The practical advice is to choose any time of the year you are launching your project and use this time as `epochStartTime` for all instances forever.
 By using IDMode it is possible to change bits order (sort by time, sequence, by instance id).
 
 All ID generators are thread safe.
