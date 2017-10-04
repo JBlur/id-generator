@@ -1,7 +1,7 @@
 # Unique id generator for distributed systems
 ### This library allows to generate unique identifiers in distributed systems.
 
-ID types are configurable to meet almost any needs for time based distributed id generation.
+ID types are configurable to meet almost any needs for time based distributed id generation.<br>
 Each generated identifier can be in size from 1 to 192 bits (not Bytes but Bits). Theoretically, you are not limited to 192 bits, but in practice it doesn't make sense. So, you can generate ids of almost unlimited size, but make sure you understand what you are doing.
 
 As Java doesn't have a primitive type to store 1 bit all ids are packaged into byte arrays. From there it is possible to retrieve generated necessary bits.
@@ -14,24 +14,24 @@ long - `LongIDGenerator`<br>
 BitSet - `BitSetIDGenerator`<br>
 String - `StringIDGenerator`<br>
 
-Those id generators allow to retrieve the ID of needed type.
+Those id generators allow to retrieve the ID of needed type.<br>
 Those id generators are all wrappers around basic IDGenerator (which returns byte arrays of needed size).
 
 Each unique id may contain (but not restricted) time bits, unique instance id bits and sequence bits. It allows to generate unique ids which are sorted by time / instance id or sequence.
 
-Also, each IDGenerator contains `epochStartTime`. It is a time from which epoch of a project is started.
-What does it mean?
-For example, if we need to generate time based ids in distributed environment, we want to be sure that all our generated ids are unique as long as possible.
-Let's assume that we need to generate 64 bits ids which contains 41 bits of time, 10 bits of instance id and 13 bits of sequence (it is one of the most common practice).
-With those options we can generate ids which are guaranteed to be unique next 2199023255552 milliseconds (almost for 70 years). Also, we can generate up to 8192 IDs per millisecond on each of 1024 instances (servers). It means that we can generate up to 8388608 unique IDs per millisecond in total for the next 70 years (it is 18446744073709551616 theoretically possible unique ids). And all of that fits in 64 bits (`long` in Java).
-To be able to fit 2199023255552 milliseconds in 41 bits we need to set `epochStartTime` which is equal to the current time in milliseconds. It means that we start counting milliseconds not from current time (which is about 1507141731000 at the time this README was created) but from 0.
-The practical advice is to choose any time of the year you are launching your project and use this time as `epochStartTime` for all instances forever.
+Also, each IDGenerator contains `epochStartTime`. It is a time from which epoch of a project is started.<br>
+What does it mean?<br>
+For example, if we need to generate time based ids in distributed environment, we want to be sure that all our generated ids are unique as long as possible.<br>
+Let's assume that we need to generate 64 bits ids which contains 41 bits of time, 10 bits of instance id and 13 bits of sequence (it is one of the most common practice).<br>
+With those options we can generate ids which are guaranteed to be unique next 2199023255552 milliseconds (almost for 70 years). Also, we can generate up to 8192 IDs per millisecond on each of 1024 instances (servers). It means that we can generate up to 8388608 unique IDs per millisecond in total for the next 70 years (it is 18446744073709551616 theoretically possible unique ids). And all of that fits in 64 bits (`long` in Java).<br>
+To be able to fit 2199023255552 milliseconds in 41 bits we need to set `epochStartTime` which is equal to the current time in milliseconds. It means that we start counting milliseconds not from current time (which is about 1507141731000 at the time this README was created) but from 0.<br>
+The practical advice is to choose any time of the year you are launching your project and use this time as `epochStartTime` for all instances forever.<br>
 By using IDMode it is possible to change bits order (sort by time, sequence, by instance id).
 
 All ID generators are thread safe.
 
-In any generated ID first byte contains highest bits. Left bits are highest bits.  
-For example:  
+In any generated ID first byte contains highest bits. Left bits are highest bits.<br>
+For example:<br>
 Number 285 (0b0000000100011101) will be presented in the byte array 'result' which will contain two bytes:  
  - result[0] will contain number: 1 (0b00000001)  
  - result[1] will contain number: 29 (0b00011101)  
