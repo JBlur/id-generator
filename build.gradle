@@ -2,6 +2,7 @@ group 'id-generator'
 
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'maven'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -16,6 +17,55 @@ jar {
 
 repositories {
     mavenCentral()
+}
+
+task createPom {
+    doLast {
+        pom {
+            project {
+                groupId = 'com.jblur'
+                artifactId = 'id-generator'
+                version = '0.3'
+                inceptionYear = '2017'
+
+                name = 'com.jblur:id-generator'
+                description = 'Distributed unique id generator'
+                url = 'https://github.com/JBlur/id-generator'
+
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                        distribution = 'repo'
+                    }
+                }
+
+                scm {
+                    url = 'https://github.com/JBlur/id-generator'
+                    connection = 'scm:git:git://github.com/JBlur/id-generator.git'
+                    developerConnection = 'scm:git:git@github.com:JBlur/id-generator.git'
+                }
+
+                developers {
+                    developer {
+                        id = 'porunov'
+                        name = 'Oleksandr Porunov'
+                        email = 'alexandr.porunov@gmail.com'
+                        url = 'https://github.com/porunov'
+                        organization = 'JBlur Inc.'
+                        organizationUrl = 'https://github.com/JBlur'
+                    }
+                }
+
+                issueManagement {
+                    url = 'https://github.com/JBlur/id-generator/issues'
+                    system = 'GitHub Issues'
+                }
+
+            }
+        }.writeTo("pom.xml")
+    }
+
 }
 
 dependencies {
