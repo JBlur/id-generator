@@ -50,10 +50,10 @@ task createPom {
                     developer {
                         id = 'porunov'
                         name = 'Oleksandr Porunov'
-                        email = 'alexandr.porunov@gmail.com'
+                        email = 'porunov@jblur.com'
                         url = 'https://github.com/porunov'
                         organization = 'JBlur Inc.'
-                        organizationUrl = 'https://github.com/JBlur'
+                        organizationUrl = 'https://jblur.com'
                     }
                 }
 

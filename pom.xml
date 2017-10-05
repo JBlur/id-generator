@@ -20,10 +20,10 @@
     <developer>
       <id>porunov</id>
       <name>Oleksandr Porunov</name>
-      <email>alexandr.porunov@gmail.com</email>
+      <email>porunov@jblur.com</email>
       <url>https://github.com/porunov</url>
       <organization>JBlur Inc.</organization>
-      <organizationUrl>https://github.com/JBlur</organizationUrl>
+      <organizationUrl>https://jblur.com</organizationUrl>
     </developer>
   </developers>
   <scm>
