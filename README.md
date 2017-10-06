@@ -1,6 +1,21 @@
 # Unique id generator for distributed systems
 ### This library allows to generate unique identifiers in distributed systems.
 
+ JBlur id generator is available at Maven Central.<br>
+ Snippet for Maven:
+ ```
+ <dependency>
+  <groupId>com.jblur</groupId>
+  <artifactId>id-generator</artifactId>
+  <version>0.3</version>
+</dependency>
+```
+
+Snippet for Gradle:
+```
+compile 'com.jblur:id-generator:0.3'
+```
+
 ID types are configurable to meet almost any needs for time based distributed id generation.<br>
 Each generated identifier can be in size from 1 to 192 bits. Theoretically, you are not limited to 192 bits, but in practice it doesn't make sense. So, you can generate ids of almost unlimited size, but make sure you understand what you are doing.
 
