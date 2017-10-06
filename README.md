@@ -16,6 +16,7 @@ Snippet for Gradle:
 compile 'com.jblur:id-generator:0.3'
 ```
 
+## Explanation:
 ID types are configurable to meet almost any needs for time based distributed id generation.<br>
 Each generated identifier can be in size from 1 to 192 bits. Theoretically, you are not limited to 192 bits, but in practice it doesn't make sense. So, you can generate ids of almost unlimited size, but make sure you understand what you are doing.
 
@@ -56,7 +57,7 @@ Common use case is to use 64 bits which consist of 41 bits of time and other bit
  - Twitter Snowflake: 41 bits time, 11 bits machine ID, 12 bits sequence number. (IDMode.TIME_UID_SEQUENCE)  
  - Instagram: 41 bits time, 13 bits machine ID, 10 bits sequence number. (IDMode.TIME_UID_SEQUENCE)
  
-# Examples:
+## Examples:
 1. Create long id generator which was described (41 bits of time, 10 of instance, 13 of the sequence):
    ```
    LongIDGenerator longIdGenerator = new LongIDGenerator(1507141731000L, 0, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
