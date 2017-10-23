@@ -66,8 +66,8 @@ Common use case is to use 64 bits which consist of 41 bits of time and other bit
    ```
 2. Create several instances of above id generator:
    ```
-   LongIDGenerator longIdGenerator1 = new LongIDGenerator(1507141731000L, 0, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
-   LongIDGenerator longIdGenerator2 = new LongIDGenerator(1507141731000L, 1, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
+   LongIDGenerator longIdGenerator1 = new LongIDGenerator(1507141731000L, 1, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
+   LongIDGenerator longIdGenerator2 = new LongIDGenerator(1507141731000L, 2, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
    LongIDGenerator longIdGenerator3 = new LongIDGenerator(1507141731000L, 3, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
    LongIDGenerator longIdGenerator4 = new LongIDGenerator(1507141731000L, 4, 41, 10, 13, IDMode.TIME_UID_SEQUENCE);
    
